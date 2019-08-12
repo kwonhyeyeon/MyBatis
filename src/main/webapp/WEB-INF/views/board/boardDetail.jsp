@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="/resources/include/css/common.css" />
 <link rel="stylesheet" href="/resources/include/css/board.css" />
-
 <script src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script src="/resources/include/js/common.js"></script>
 <script>
