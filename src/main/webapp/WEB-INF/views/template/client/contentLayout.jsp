@@ -42,7 +42,7 @@
 	</nav>
 
 	<!-- Begin page content -->
-	<div class="container">
+	<div class="container" style="float: left; width: 1902px;">
 		<div class="page-header">
 			<h1><titles:getAsString name="title"/></h1>
 		</div>
