@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="/resources/include/css/common.css" />
 <link rel="stylesheet" href="/resources/include/css/board.css" />
-
 <script src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script src="/resources/include/js/common.js"></script>
 <script>
@@ -19,6 +18,16 @@
    $(function() {
       $("#pwdChk").hide();
       
+      // 첨부파일 이미지 보여주기 위한 속성 추가
+	var file = "<c:out value='${detail.b_file}' />";
+	
+	if(file!=""){
+    		$("#fileImage").attr({
+    			src:"/uploadStorage/board/${detail.b_file}",
+    			width:"450px",
+    			height:"200px"
+    		});
+    	}        
       // 수정 버튼 클릭 시 처리 이벤트
       $("#updateFormBtn").click(function() {
          $("#pwdChk").show();
@@ -28,9 +37,29 @@
       
       // 삭제 버튼 클릭 시 처리 이벤트
       $("#boardDeleteBtn").click(function() {
-         $("#pwdChk").show();
-         $("msg").text("작성 시 입력한 비밀번호를 입력해 주세요").css("color", "#000099");
-         butChk = 2;
+    	  $.ajax({
+    		 url:"/board/replyCnt.do",
+    		 type:"post",
+    		 data:"b_num="+$("#b_num").val(),
+    				
+    		
+    		 dataType:"text",
+    		 error:function(){
+    			 alert("시스템 오류 입니다. 관리자에게 문의 하세요");
+    		 },
+    			success:function(resultData){
+    				if(resultData == 0){
+    					$("#pwdChk").show();
+    					$("#msg").text("작성시 입력한 비밀번호를 입력해 주세여.").css("color", "#000099");
+    					butChk = 2;
+    				}else{
+    					alert("댓글 존재시 게시물을 삭제할 수 없습니다. 댓글 삭제후 다시 하십시오.");
+    					return;
+    				}
+    			}
+    		 
+    	  });
+    	  
       });
       
       // 비밀번호 확인 버튼 클릭 시 처리 이벤트
@@ -83,6 +112,7 @@
 </head>
 <body>
 
+
    <div class="contentContainer">
    
       <div class="contentTit">
@@ -91,6 +121,8 @@
       
       <form id="f_data" name="f_data" method="post">
          <input type="hidden" name="b_num" value="${detail.b_num}" />
+          <input type="hidden" name="pageSize" id="pageSize" value="${param.pageSize }" />
+     	 <input type="hidden" name="page" id="page" value="${param.page }" />
       </form>
       
       <!-- 비밀번호 확인 버튼 및 버튼 추가 시작 -->
@@ -143,11 +175,17 @@
                   <td class="ac vm">내용</td>
                   <td colspan="3">${detail.b_content}</td>
                </tr>
+               <c:if test="${detail.b_file !='' }">
+               	<tr>
+               		<td class="ac vm">첨부파일 이미지</td>
+               		<td colspan="3"><img id="fileImage" /></td>
+               	</tr>
+               </c:if>
             </tbody>
          </table>
       </div>
       <!-- 상세 정보 리스트 종료 -->
-   
+   	 <jsp:include page="reply.jsp"></jsp:include>
    </div>
 
 </body>

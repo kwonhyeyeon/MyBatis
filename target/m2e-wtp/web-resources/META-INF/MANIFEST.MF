@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: alfo8-9
 Build-Jdk: 1.8.0_211
+=======
+Built-By: dldls
+Build-Jdk: 1.8.0_221
+>>>>>>> 55568b0c1c6e8c04cb3159ecff842b0afcb93157
 Created-By: Maven Integration for Eclipse
 

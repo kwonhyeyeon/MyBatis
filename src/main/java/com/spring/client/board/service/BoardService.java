@@ -5,7 +5,7 @@ import java.util.List;
 import com.spring.client.board.vo.BoardVO;
 
 public interface BoardService {
-	public List<BoardVO> boardList(); // 글목록
+	public List<BoardVO> boardList(BoardVO bvo); // 글목록
 
 	public int boardInsert(BoardVO bvo); // 글입력
 
@@ -19,4 +19,9 @@ public interface BoardService {
 
 	// 글 수정
 	public int boardUpdate(BoardVO bvo);
+	
+	// 페이지 관련 전체글수를 얻어옴
+	public int boardListCnt(BoardVO bvo);
+	
+	public int replyCnt(int b_num);
 }

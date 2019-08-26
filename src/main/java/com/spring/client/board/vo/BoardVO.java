@@ -1,12 +1,33 @@
 package com.spring.client.board.vo;
 
-public class BoardVO {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.common.vo.CommonVO;
+
+// 필드에 추가하지 않고 vo클래스를 하나더 만든다음 상속시켰네
+public class BoardVO extends CommonVO {
 	private int b_num = 0; // 글번호
 	private String b_name = ""; // 작성자
 	private String b_title = ""; // 제목
 	private String b_content = ""; // 내용
 	private String b_date = ""; // 작성일
 	private String b_pwd = ""; // 비밀번호
+	private MultipartFile file; // 첨부파일
+	private String b_file=""; // 실제서버에 저장한 파일명
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	public String getB_file() {
+		return b_file;
+	}
+	public void setB_file(String b_file) {
+		this.b_file = b_file;
+	}
 	public int getB_num() {
 		return b_num;
 	}
