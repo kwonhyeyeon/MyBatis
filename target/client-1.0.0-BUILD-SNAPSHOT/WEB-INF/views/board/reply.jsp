@@ -331,7 +331,7 @@ minimum-scale=1.0, user-scalable=no" />
 				</div>
 			</form>
 		</div>
-		<ul id="comment_list">
+		<ul id="comment_list" style="float: left; width: 100%">
 			<!-- 여기에 동적인 생성 요소가 들어오게 됩니다. -->
 		</ul>
 	</div>
